@@ -18,6 +18,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<DespesasService, DespesasService>();
 builder.Services.AddScoped<ReceitasService, ReceitasService>();
 builder.Services.AddScoped<ResumoService, ResumoService>();
+builder.Services.AddScoped<UsuarioService, UsuarioService>();
 
 builder.Services.AddSwaggerGen();
 
