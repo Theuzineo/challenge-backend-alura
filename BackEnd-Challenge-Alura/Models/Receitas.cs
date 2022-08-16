@@ -7,7 +7,7 @@ namespace BackEnd_Challenge_Alura.Models
     {
         [Key]
         [Required]
-        public int IdReceita { get; set; }
+        public int ReceitaId { get; set; }
 
         [Required(ErrorMessage = "O campo 'Descrição' precisa ser preenchido")]
         public string DescricaoReceita { get; set; }
@@ -17,5 +17,8 @@ namespace BackEnd_Challenge_Alura.Models
 
         [Required(ErrorMessage = "O campo 'Data' precisa ser preenchido")]
         public DateTime DataReceita { get; set; }
+
+
+        public Usuarios Usuario { get; set; }
     }
 }

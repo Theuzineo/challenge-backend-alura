@@ -7,7 +7,7 @@ namespace BackEnd_Challenge_Alura.Models
     {
         [Key]
         [JsonIgnore]
-        public int IdDespesa { get; set; }
+        public int DespesaId { get; set; }
 
 
         [Required(ErrorMessage = "O campo 'Descrição' precisa ser preenchido")]
@@ -22,5 +22,8 @@ namespace BackEnd_Challenge_Alura.Models
         public DateTime DataDespesa { get; set; }
 
         public int CategoriaDespesa { get; set; } = 8;
+
+
+        public Usuarios Usuario { get; set; }
     }
 }

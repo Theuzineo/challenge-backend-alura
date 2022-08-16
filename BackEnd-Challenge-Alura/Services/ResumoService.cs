@@ -16,12 +16,12 @@ namespace BackEnd_Challenge_Alura.Services
 
         public Resumo GetResumo(int ano, int mes)
         {
-            var getValorReceitas = _context.ReceitasDb
+            var getValorReceitas = _context.tb_Receitas
                 .Where(receitas => receitas.DataReceita.Year == ano && receitas.DataReceita.Month == mes)
                 .Select(receitas => receitas.ValorReceita)
                 .Sum();
 
-            var getValorDespesas = _context.DespesasDb
+            var getValorDespesas = _context.tb_Despesas
                 .Where(despesas => despesas.DataDespesa.Year == ano && despesas.DataDespesa.Month == mes)
                 .Select(despesas => despesas.ValorDespesa)
                 .Sum();
@@ -30,7 +30,7 @@ namespace BackEnd_Challenge_Alura.Services
 
 
             var getCampos =
-                from tbCategoria in _context.DespesasDb
+                from tbCategoria in _context.tb_Despesas
                 where tbCategoria.DataDespesa.Year == ano && tbCategoria.DataDespesa.Month == mes
                 group new { tbCategoria.CategoriaDespesa, tbCategoria.ValorDespesa }                     
                 by tbCategoria.CategoriaDespesa into tbSaldo

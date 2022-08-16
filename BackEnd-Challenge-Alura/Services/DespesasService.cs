@@ -23,7 +23,7 @@ namespace BackEnd_Challenge_Alura.Services
             var verificaCategoria = CategoriasDespesas(despesaDto.CategoriaDespesa);
             if (verificaCategoria == false) return null;
 
-            Despesas? ProcuraDespesa = _context.DespesasDb.FirstOrDefault(ProcuraDespesa => 
+            Despesas? ProcuraDespesa = _context.tb_Despesas.FirstOrDefault(ProcuraDespesa => 
             ProcuraDespesa.DescricaoDespesa == despesaDto.DescricaoDespesa);
             if (ProcuraDespesa != null)
             {
@@ -35,14 +35,14 @@ namespace BackEnd_Challenge_Alura.Services
             }
             Despesas despesa = _mapper.Map<Despesas>(despesaDto);
             
-            _context.DespesasDb.Add(despesa);
+            _context.tb_Despesas.Add(despesa);
             _context.SaveChanges();
             return _mapper.Map<ReadDespesasDto>(despesa);
         }
 
         public ReadDespesasDto? RecuperaDespesaPorId(int id)
         {
-            Despesas? despesa = _context.DespesasDb.FirstOrDefault(despesa => despesa.IdDespesa == id);
+            Despesas? despesa = _context.tb_Despesas.FirstOrDefault(despesa => despesa.DespesaId == id);
             if (despesa == null) return null;
 
             return _mapper.Map<ReadDespesasDto>(despesa);
@@ -52,11 +52,11 @@ namespace BackEnd_Challenge_Alura.Services
         {
             if (descricao == null)
             {
-                var despesas = _context.DespesasDb.ToList();
+                var despesas = _context.tb_Despesas.ToList();
                 return despesaToList(despesas); ;
             }
 
-            var despesa = _context.DespesasDb.Where(Descricao =>
+            var despesa = _context.tb_Despesas.Where(Descricao =>
             Descricao.DescricaoDespesa.ToLower().Contains(descricao.ToLower())).ToList();
             if (despesa == null) return null;
 
@@ -65,7 +65,7 @@ namespace BackEnd_Challenge_Alura.Services
 
         public List<ReadDespesasDto>? ReceuperaDespesaPorData(int ano, int mes)
         {
-            var despesa = _context.DespesasDb.Where(Data =>
+            var despesa = _context.tb_Despesas.Where(Data =>
             Data.DataDespesa.Month == mes && Data.DataDespesa.Year == ano).ToList();
             if (despesa.Count == 0) return null;
 
@@ -77,10 +77,10 @@ namespace BackEnd_Challenge_Alura.Services
 
         public Result UpdateDespesaPorId(int id, UpdateDespesaDto updateDespesaDto)
         {
-            Despesas? despesa = _context.DespesasDb.FirstOrDefault(Id => Id.IdDespesa == id);
+            Despesas? despesa = _context.tb_Despesas.FirstOrDefault(Id => Id.DespesaId == id);
             if (despesa == null) return Result.Fail("Despesa não encontrada");
 
-            var verificaDescricao = _context.DespesasDb.FirstOrDefault(descricao =>
+            var verificaDescricao = _context.tb_Despesas.FirstOrDefault(descricao =>
             descricao.DescricaoDespesa == updateDespesaDto.DescricaoDespesa);
             if (verificaDescricao != null) return Result.Fail("Já existe essa descrição");
 
@@ -91,10 +91,10 @@ namespace BackEnd_Challenge_Alura.Services
 
         public Result DeleteDespesaPorId(int id)
         {
-            Despesas? despesa = _context.DespesasDb.FirstOrDefault(Id => Id.IdDespesa == id);
+            Despesas? despesa = _context.tb_Despesas.FirstOrDefault(Id => Id.DespesaId == id);
             if (despesa == null) return Result.Fail("Despesa não encontrada");
 
-            _context.DespesasDb.Remove(despesa);
+            _context.tb_Despesas.Remove(despesa);
             _context.SaveChanges();
             return Result.Ok();
         }

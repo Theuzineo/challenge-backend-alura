@@ -20,7 +20,7 @@ namespace BackEnd_Challenge_Alura.Services
 
         public ReadReceitasDto? AdicionaReceita(CreateReceitasDto receitaDto)
         {
-            Receitas? ProcuraReceita = _context.ReceitasDb.FirstOrDefault(ProcuraReceita => ProcuraReceita.DescricaoReceita == receitaDto.DescricaoReceita);
+            Receitas? ProcuraReceita = _context.tb_Receitas.FirstOrDefault(ProcuraReceita => ProcuraReceita.DescricaoReceita == receitaDto.DescricaoReceita);
             if (ProcuraReceita != null)
             {
                 if (ProcuraReceita.DataReceita.Month == receitaDto.DataReceita.Month &&
@@ -29,7 +29,7 @@ namespace BackEnd_Challenge_Alura.Services
             }
 
             Receitas receita = _mapper.Map<Receitas>(receitaDto);
-            _context.ReceitasDb.Add(receita);
+            _context.tb_Receitas.Add(receita);
             _context.SaveChanges();
             return _mapper.Map<ReadReceitasDto>(receita);
         }
@@ -38,11 +38,11 @@ namespace BackEnd_Challenge_Alura.Services
         {
             if (descricao == null)
             {
-                var receitas = _context.ReceitasDb.ToList();
+                var receitas = _context.tb_Receitas.ToList();
                 return receitaToList(receitas);
             }
 
-            var receita = _context.ReceitasDb.Where(Descricao =>
+            var receita = _context.tb_Receitas.Where(Descricao =>
             Descricao.DescricaoReceita.ToLower().Contains(descricao.ToLower())).ToList();
             if (receita == null) return null;
 
@@ -50,7 +50,7 @@ namespace BackEnd_Challenge_Alura.Services
         }
         public List<ReadReceitasDto>? RecuperaReceitaPorData(int ano, int mes)
         {
-            var receita = _context.ReceitasDb.Where(Data =>
+            var receita = _context.tb_Receitas.Where(Data =>
             Data.DataReceita.Month == mes && Data.DataReceita.Year == ano).ToList();
             if (receita.Count == 0) return null;
 
@@ -62,7 +62,7 @@ namespace BackEnd_Challenge_Alura.Services
 
         public ReadReceitasDto? GetReceitaPorId(int id)
         {
-            Receitas? receita = _context.ReceitasDb.FirstOrDefault(receita => receita.IdReceita == id);
+            Receitas? receita = _context.tb_Receitas.FirstOrDefault(receita => receita.ReceitaId == id);
             if (receita == null) return null;
 
             return _mapper.Map<ReadReceitasDto>(receita);
@@ -70,10 +70,10 @@ namespace BackEnd_Challenge_Alura.Services
 
         public Result UpdateReceitaPorId(int id, UpdateReceitasDto updateReceitaDto)
         {
-            Receitas? receita = _context.ReceitasDb.FirstOrDefault(Id => Id.IdReceita == id);
+            Receitas? receita = _context.tb_Receitas.FirstOrDefault(Id => Id.ReceitaId == id);
             if (receita == null) return Result.Fail("Receita não encontrada");
 
-            var verificaDescricao = _context.ReceitasDb.FirstOrDefault(descricao =>
+            var verificaDescricao = _context.tb_Receitas.FirstOrDefault(descricao =>
             descricao.DescricaoReceita == updateReceitaDto.DescricaoReceita &&
             descricao.DataReceita.Year == updateReceitaDto.DataReceita.Year &&
             descricao.DataReceita.Month == updateReceitaDto.DataReceita.Month);
@@ -86,10 +86,10 @@ namespace BackEnd_Challenge_Alura.Services
 
         public Result DeleteReceitaPorId(int id)
         {
-            Receitas? receita = _context.ReceitasDb.FirstOrDefault(Id => Id.IdReceita == id);
+            Receitas? receita = _context.tb_Receitas.FirstOrDefault(Id => Id.ReceitaId == id);
             if (receita == null) return Result.Fail("Receita não encontrada");
 
-            _context.ReceitasDb.Remove(receita);
+            _context.tb_Receitas.Remove(receita);
             _context.SaveChanges();
             return Result.Ok();
         }
