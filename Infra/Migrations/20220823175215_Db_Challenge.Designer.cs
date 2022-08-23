@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infra.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220823171557_Db_Challenge")]
+    [Migration("20220823175215_Db_Challenge")]
     partial class Db_Challenge
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
