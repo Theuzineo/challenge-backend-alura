@@ -24,6 +24,7 @@ namespace Domain.Models
         public int CategoriaDespesa { get; set; } = 8;
 
 
-        public Usuarios Usuario { get; set; }
+        public virtual Usuarios Usuario { get; set; }
+        public int UsuarioID { get; set; }
     }
 }

@@ -23,6 +23,8 @@ namespace Domain.Models
         public DateTime DataReceita { get; set; }
 
 
-        public Usuarios Usuario { get; set; }
+        public virtual Usuarios Usuario { get; set; }
+        public int UsuarioID { get; set; }
+
     }
 }

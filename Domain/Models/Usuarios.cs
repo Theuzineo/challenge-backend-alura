@@ -27,5 +27,10 @@ namespace Domain.Models
 
         [Required]
         public string ConfirmarSenha { get; set; }
+
+
+        public virtual ICollection<Despesas> Despesas { get; set; }
+        public virtual ICollection<Receitas> Receitas { get; set; }
+
     }
 }

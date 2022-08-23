@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infra.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220823164453_Db_Challenge")]
+    [Migration("20220823171557_Db_Challenge")]
     partial class Db_Challenge
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,7 +42,7 @@ namespace Infra.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UsuarioId")
+                    b.Property<int>("UsuarioID")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("ValorDespesa")
@@ -51,7 +51,7 @@ namespace Infra.Migrations
 
                     b.HasKey("DespesaId");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("UsuarioID");
 
                     b.ToTable("tb_Despesas");
                 });
@@ -71,7 +71,7 @@ namespace Infra.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UsuarioId")
+                    b.Property<int>("UsuarioID")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("ValorReceita")
@@ -80,7 +80,7 @@ namespace Infra.Migrations
 
                     b.HasKey("ReceitaId");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("UsuarioID");
 
                     b.ToTable("tb_Receitas");
                 });
@@ -121,8 +121,8 @@ namespace Infra.Migrations
             modelBuilder.Entity("Domain.Models.Despesas", b =>
                 {
                     b.HasOne("Domain.Models.Usuarios", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
+                        .WithMany("Despesas")
+                        .HasForeignKey("UsuarioID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -132,12 +132,19 @@ namespace Infra.Migrations
             modelBuilder.Entity("Domain.Models.Receitas", b =>
                 {
                     b.HasOne("Domain.Models.Usuarios", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
+                        .WithMany("Receitas")
+                        .HasForeignKey("UsuarioID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("Domain.Models.Usuarios", b =>
+                {
+                    b.Navigation("Despesas");
+
+                    b.Navigation("Receitas");
                 });
 #pragma warning restore 612, 618
         }

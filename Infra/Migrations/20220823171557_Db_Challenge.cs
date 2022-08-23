@@ -36,14 +36,14 @@ namespace Infra.Migrations
                     ValorDespesa = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DataDespesa = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CategoriaDespesa = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
+                    UsuarioID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tb_Despesas", x => x.DespesaId);
                     table.ForeignKey(
-                        name: "FK_tb_Despesas_tb_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
+                        name: "FK_tb_Despesas_tb_Usuarios_UsuarioID",
+                        column: x => x.UsuarioID,
                         principalTable: "tb_Usuarios",
                         principalColumn: "UsuarioId",
                         onDelete: ReferentialAction.Cascade);
@@ -58,28 +58,28 @@ namespace Infra.Migrations
                     DescricaoReceita = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ValorReceita = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DataReceita = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
+                    UsuarioID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tb_Receitas", x => x.ReceitaId);
                     table.ForeignKey(
-                        name: "FK_tb_Receitas_tb_Usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
+                        name: "FK_tb_Receitas_tb_Usuarios_UsuarioID",
+                        column: x => x.UsuarioID,
                         principalTable: "tb_Usuarios",
                         principalColumn: "UsuarioId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_Despesas_UsuarioId",
+                name: "IX_tb_Despesas_UsuarioID",
                 table: "tb_Despesas",
-                column: "UsuarioId");
+                column: "UsuarioID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_Receitas_UsuarioId",
+                name: "IX_tb_Receitas_UsuarioID",
                 table: "tb_Receitas",
-                column: "UsuarioId");
+                column: "UsuarioID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
