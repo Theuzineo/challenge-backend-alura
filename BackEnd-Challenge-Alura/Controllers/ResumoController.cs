@@ -1,7 +1,5 @@
-﻿
-
-using BackEnd_Challenge_Alura.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Services;
 
 namespace BackEnd_Challenge_Alura.Controllers
 {

@@ -1,9 +1,7 @@
-﻿using BackEnd_Challenge_Alura.Data;
-using BackEnd_Challenge_Alura.Data.Dto.Despesas;
-using BackEnd_Challenge_Alura.Models;
-using BackEnd_Challenge_Alura.Services;
+﻿using Domain.DTOs.Despesas;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using Services;
 
 namespace BackEnd_Challenge_Alura.Controllers
 {

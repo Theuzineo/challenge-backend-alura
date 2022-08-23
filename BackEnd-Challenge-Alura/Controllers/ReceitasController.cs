@@ -1,8 +1,7 @@
-﻿using BackEnd_Challenge_Alura.Data.Dto.Receitas;
-using Microsoft.AspNetCore.Mvc;
-using BackEnd_Challenge_Alura.Services;
+﻿using Microsoft.AspNetCore.Mvc;
 using FluentResults;
-using BackEnd_Challenge_Alura.Models;
+using Domain.DTOs.Receitas;
+using Services;
 
 namespace BackEnd_Challenge_Alura.Controllers
 {

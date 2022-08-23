@@ -1,5 +1,6 @@
-using BackEnd_Challenge_Alura.Services;
+using Infra.Data;
 using Microsoft.EntityFrameworkCore;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,14 +12,14 @@ builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
-builder.Services.AddDbContext<BackEnd_Challenge_Alura.Data.AppDbContext>(opt => opt.UseSqlServer(
+builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<DespesasService, DespesasService>();
 builder.Services.AddScoped<ReceitasService, ReceitasService>();
 builder.Services.AddScoped<ResumoService, ResumoService>();
-builder.Services.AddScoped<UsuarioService, UsuarioService>();
+builder.Services.AddScoped<CadastroService, CadastroService>();
 
 builder.Services.AddSwaggerGen();
 

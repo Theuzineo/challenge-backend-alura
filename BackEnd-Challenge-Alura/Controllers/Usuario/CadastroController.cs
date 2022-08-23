@@ -1,7 +1,7 @@
-﻿using BackEnd_Challenge_Alura.Services;
-using BackEnd_Challenge_Alura.ViewModels.Dto.Usuario.Cadastro;
+﻿using Domain.DTOs.Usuario.Cadastro;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using Services;
 
 namespace BackEnd_Challenge_Alura.Controllers.Usuario
 {
@@ -10,9 +10,9 @@ namespace BackEnd_Challenge_Alura.Controllers.Usuario
     [Route("[controller]")]
     public class CadastroController : ControllerBase
     {
-        private UsuarioService _usuarioService;
+        private CadastroService _usuarioService;
 
-        public CadastroController(UsuarioService usuarioService)
+        public CadastroController(CadastroService usuarioService)
         {
             _usuarioService = usuarioService;
         }
