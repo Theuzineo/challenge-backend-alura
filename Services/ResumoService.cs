@@ -39,7 +39,6 @@ namespace Services
                     TotalCategoria = tbSaldo.Sum(x => x.ValorDespesa) ?? 0
                 };
 
-            var teste = getCampos.ToList();
             return new Resumo()
             {
                 TotalReceitas = getValorReceitas ?? 0,

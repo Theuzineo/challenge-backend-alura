@@ -1,5 +1,4 @@
 using Infra.Data;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Services;
 
@@ -16,10 +15,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDbContext<UserDbContext>(opt => opt.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
-    .AddEntityFrameworkStores<UserDbContext>();
+//builder.Services.AddDbContext<UserDbContext>(opt => opt.UseSqlServer(
+//    builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddIdentity<IdentityUser<int>, IdentityRole<int>>()
+//    .AddEntityFrameworkStores<UserDbContext>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<DespesasService, DespesasService>();
@@ -46,3 +45,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+// Todos os arquivos referentes ao Identity.Microsoft foram comentados

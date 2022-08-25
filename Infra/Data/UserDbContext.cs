@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+﻿//using Microsoft.AspNetCore.Identity;
+//using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+//using Microsoft.EntityFrameworkCore;
+//using Microsoft.Extensions.Options;
 
-namespace Infra.Data
-{
-    public class UserDbContext : IdentityDbContext<IdentityUser<int>, IdentityRole<int>, int>
-    {
-        public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
-        {
+//namespace Infra.Data
+//{
+//    public class UserDbContext : IdentityDbContext<IdentityUser<int>, IdentityRole<int>, int>
+//    {
+//        public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
+//        {
 
-        }
-    }
-}
+//        }
+//    }
+//}
